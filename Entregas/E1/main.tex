@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, spanish]{babel}
+\usepackage[dvips]{graphics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{epsfig}
+\usepackage{multicol}
+\usepackage{wasysym}
+
+\usepackage[usenames,dvipsnames]{xcolor} 
+\usepackage{hyperref} 
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} 
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour} 
+
+\parindent 0pt
+\parskip 0pt
+
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+\begin{document}
+
+\includegraphics[width=2cm]{uc.png}
+\vspace*{-1.9cm}
+
+\hspace*{2.1cm}
+ \begin{tabular}{l}
+  \sc Pontificia Universidad Católica de Chile \\
+  \sc Escuela de Ingeniería \\
+  \sc Departamento de Ciencia de la Computación
+  %\vspace{15\baselineskip}\mbox{}
+  %\vspace{-3mm}\mbox{}
+ \end{tabular}
+ \bigskip
+
+\vspace*{5mm}
+\begin{center}
+{IIC2413 --- Bases de Datos --- 2' 2019} \\
+\vspace{3mm}
+{\Large\bf Entrega 1} \\
+\vspace{2mm}
+Matías Reyes \\
+Nicolás Van Sint Jan
+\end{center}
+
+\section{Esquema}
+
+El siguiente esquema es el que diseñamos: 
+
+	\begin{itemize}
+		\item \texttt{Socios(\underline{sid}: \textbf{int}, nombre: string, nacionalidad: string)} 
+		\item \texttt{Proyectos(\underline{pid}: \textbf{int}, tipo: string, nombre: string, latitud: float, longitud: float, \\ region: string, comuna: string, fecha\_aper: date, operativo: bool)} 
+		\item \texttt{Mineras(\underline{pid}: \textbf{int}, mineral: string)} 
+		\item \texttt{Centrales(\underline{pid}: \textbf{int}, generacion: string)} 
+		\item \texttt{SyP(\underline{pid}: int, \underline{sid}: int)} 
+		\item \texttt{Recursos(\underline{rid}: int, pid: int, causa: string, desc: string, fecha\_rel: date, region: string, comuna: string, status: string)} 
+		\item \texttt{Tramitados(\underline{rid}: int, fecha\_tram: date)} 
+	\end{itemize}
+
+\section{Consultas}
+
+\begin{enumerate}
+	\item $\texttt{Proyectos} \bowtie (\sigma_{\texttt{generacion} = \text{`termoeléctrica'}}(\texttt{Centrales}))$ 
+	\item $\sigma_{\texttt{region} = \text{`Metropolitana'}}(\sigma_{\texttt{tipo} = \text{`vertedero'}}(\texttt{Proyectos}))$ 
+	\item $\texttt{Mineras} \bowtie (\sigma_{\texttt{fecha\_rel} \geq a}(\sigma_{\texttt{fecha\_rel} \leq b}(\texttt{Recursos})))$  
+\end{enumerate}
+
+
+\end{document}
+
+
