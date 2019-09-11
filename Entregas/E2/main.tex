@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, spanish]{babel}
+\usepackage[dvips]{graphics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{epsfig}
+\usepackage{multicol}
+\usepackage{wasysym}
+
+\usepackage[usenames,dvipsnames]{xcolor} 
+\usepackage{hyperref} 
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} 
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour} 
+
+\parindent 0pt
+\parskip 0pt
+
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+\begin{document}
+
+\includegraphics[width=2cm]{uc.png}
+\vspace*{-1.9cm}
+
+\hspace*{2.1cm}
+ \begin{tabular}{l}
+  \sc Pontificia Universidad Católica de Chile \\
+  \sc Escuela de Ingeniería \\
+  \sc Departamento de Ciencia de la Computación
+  %\vspace{15\baselineskip}\mbox{}
+  %\vspace{-3mm}\mbox{}
+ \end{tabular}
+ \bigskip
+
+\vspace*{5mm}
+\begin{center}
+{IIC2413 --- Bases de Datos --- 2' 2019} \\
+\vspace{3mm}
+{\Large\bf Entrega 2} \\
+\vspace{2mm}
+Matías Reyes \\
+Nicolás Van Sint Jan
+\end{center}
+
+\section{Esquema}
+
+	\begin{itemize}
+		\item \texttt{Socios(\underline{nombre}: string, \underline{apellido}: string, nacionalidad: string)} 
+		\item \texttt{Proyectos(\underline{nombre}: string, latitud: float, longitud: float, comuna: string,\\ fecha\_apertura: string, operativo: string)} 
+		\item \texttt{Recursos(\underline{numero}: string, causa: string, area\_influencia: float, descripcion: string,\\ fecha\_apertura: string, comuna\_tramitacion: string, status: string)}
+		\item \texttt{RyP(\underline{numero\_recurso}: string, nombre\_proyecto: string)} 
+		
+		\item \texttt{SyP(nombre\_socio: string, apellido\_socio: string, nombre\_proyecto: string)} 
+		 
+		\item \texttt{Mineras(\underline{nombre\_proyecto}: string, mineral: string)} 
+		\item \texttt{Centrales(\underline{nombre\_proyecto}: str, tipo generacion: string)} 
+		\item \texttt{Tramitados(\underline{numero\_recurso}: string, fecha\_dictamen: string)} 
+		
+		\item \texttt{CyR(\underline{comuna}: string, region: string)} 
+	\end{itemize}
+
+\section{Consultas}
+
+\begin{enumerate}
+	\item $\texttt{Proyectos} \bowtie (\sigma_{\texttt{generacion} = \text{`termoeléctrica'}}(\texttt{Centrales}))$ 
+	\item $\sigma_{\texttt{region} = \text{`Metropolitana'}}(\sigma_{\texttt{tipo} = \text{`vertedero'}}(\texttt{Proyectos}))$ 
+	\item $\texttt{Mineras} \bowtie (\sigma_{\texttt{fecha\_rel} \geq a}(\sigma_{\texttt{fecha\_rel} \leq b}(\texttt{Recursos})))$  
+\end{enumerate}
+
+
+\end{document}
+
+
