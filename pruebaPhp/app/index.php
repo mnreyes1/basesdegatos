@@ -1,79 +1,75 @@
 <?php include('templates/header.html');   ?>
 
 <body>
-  <h1 align="center">Biblioteca Pokemón </h1>
-  <p style="text-align:center;">Aquí podrás encontrar información sobre pokemones.</p>
+  <h1 align="center">Entrega 2</h1>
 
   <br>
 
-  <h3 align="center"> ¿Quieres buscar un Pokemón por tipo y/o nombre?</h3>
+  <form align="center" action="consultas/consulta_0.php" method="post">
+    <input type="submit" value="Ver SyP">
+  </form>
 
-  <form align="center" action="consultas/consulta_tipo_nombre.php" method="post">
-    Tipo:
-    <input type="text" name="tipo_elegido">
+  <br>
+  <br>
+  <br>
+
+  <form align="center" action="consultas/consulta_1.php" method="post">
+    <input type="submit" value="Ver todas las centrales termoelectricas">
+  </form>
+  
+  <br>
+  <br>
+  <br>
+
+  <form align="center" action="consultas/consulta_2.php" method="post">
+    <input type="submit" value="Ver todos los vertederos de RM">
+  </form>
+  
+  <br>
+  <br>
+  <br>
+
+  <h3 align="center">Ver recursos asociados a minas entre las siguientes fechas:</h3>
+
+  <form align="center" action="consultas/consulta_3.php" method="post">
+    Fecha inicio:
+    <input type="text" name="fecha_inicio">
     <br/>
-    Nombre:
-    <input type="text" name="nombre_pokemon">
+    Fecha final:
+    <input type="text" name="fecha_final">
     <br/><br/>
     <input type="submit" value="Buscar">
+  </form>
+  
+  
+  <br>
+  <br>
+  <br>
+
+  <form align="center" action="consultas/consulta_4.php" method="post">
+    <input type="submit" value="Ver regiones con algun recurso vigente">
   </form>
   
   <br>
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres buscar un Pokemón por su ID?</h3>
-
-  <form align="center" action="consultas/consulta_stats.php" method="post">
-    Id:
-    <input type="text" name="id_elegido">
-    <br/><br/>
-    <input type="submit" value="Buscar">
+  <form align="center" action="consultas/consulta_5.php" method="post">
+    <input type="submit" value="Ver socios y todos sus proyectos">
   </form>
   
   <br>
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres conocer los Pokemones más altos que: ?</h3>
-
-  <form align="center" action="consultas/consulta_altura.php" method="post">
-    Altura Mínima:
-    <input type="text" name="altura">
-    <br/><br/>
-    <input type="submit" value="Buscar">
+  <form align="center" action="consultas/consulta_6.php" method="post">
+    <input type="submit" value="Ver proyectos en operación con recurso aprobado">
   </form>
+  
   <br>
   <br>
   <br>
 
-  <h3 align="center">¿Quieres buscar todos los pokemones por tipo?</h3>
 
-  <?php
-  #Primero obtenemos todos los tipos de pokemones
-  require("config/conexion.php");
-  $result = $db -> prepare("SELECT DISTINCT tipo FROM ejercicio_ayudantia;");
-  $result -> execute();
-  $dataCollected = $result -> fetchAll();
-  ?>
-
-  <form align="center" action="consultas/consulta_tipo.php" method="post">
-    Ingresar un tipo:
-    <select name="tipo">
-      <?php
-      #Para cada tipo agregamos el tag <option value=value_of_param> visible_value </option>
-      foreach ($dataCollected as $d) {
-        echo "<option value=$d[0]>$d[0]</option>";
-      }
-      ?>
-    </select>
-    <br><br>
-    <input type="submit" value="Buscar por tipo">
-  </form>
-
-  <br>
-  <br>
-  <br>
-  <br>
 </body>
 </html>
