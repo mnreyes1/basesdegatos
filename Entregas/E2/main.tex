@@ -45,6 +45,13 @@ Matías Reyes \\
 Nicolás Van Sint Jan
 \end{center}
 
+\section{Diagrama E/R}
+
+\begin{figure}[h]	
+	\includegraphics[scale=0.60]{ER_v1.png}
+	\caption{Diagrama Entidad/Relación}
+\end{figure}
+
 \section{Esquema}
 
 	\begin{itemize}
@@ -62,6 +69,10 @@ Nicolás Van Sint Jan
 		\item \texttt{CyR(\underline{comuna}: string, region: string)} 
 	\end{itemize}
 
+\textbf{BCNF:} %explicacion de porque esta en BCNF
+
+\section{Comandos usados para crear tablas}
+
 \section{Consultas}
 
 \begin{enumerate}
@@ -70,6 +81,7 @@ Nicolás Van Sint Jan
 	\item $\texttt{Mineras} \bowtie (\sigma_{\texttt{fecha\_rel} \geq a}(\sigma_{\texttt{fecha\_rel} \leq b}(\texttt{Recursos})))$  
 \end{enumerate}
 
+\section{Supuestos extra}
 
 \end{document}
 
