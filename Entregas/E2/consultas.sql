@@ -100,8 +100,9 @@ apellido,
 count DESC;
 
 #6 
-SELECT DISTINCT pnombre FROM
-Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
-WHERE status='aprobado'
-AND operativo=True;
+SELECT DISTINCT Proyectos.pnombre FROM Recursos, RecursosProyectos, Proyectos 
+WHERE Proyectos.pnombre=RecursosProyectos.pnombre 
+AND Recursos.numero=RecursosProyectos.numero
+AND Recursos.status='aprobado'
+AND Proyectos.operativo=TRUE;
 

@@ -6,10 +6,11 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT DISTINCT pnombre FROM
-		  Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
-		  WHERE status='aprobado'
-		  AND operativo=TRUE;";
+ 	$query = "SELECT DISTINCT Proyectos.pnombre FROM Recursos, RecursosProyectos, Proyectos 
+			  WHERE Proyectos.pnombre=RecursosProyectos.pnombre 
+			  AND Recursos.numero=RecursosProyectos.numero
+		  	  AND Recursos.status='aprobado'
+		  	  AND Proyectos.operativo=TRUE;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
