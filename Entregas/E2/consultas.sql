@@ -6,6 +6,7 @@ CREATE TABLE Socios(
 	snombre VARCHAR(100),
 	apellido VARCHAR(100),
 	nacionalidad VARCHAR(100));
+\COPY Socios FROM 'psql_socios.csv' DELIMITERS ',' CSV HEADER;
 
 
 DROP TABLE IF EXISTS Proyectos;
@@ -17,6 +18,7 @@ CREATE TABLE Proyectos(
 	comuna VARCHAR(50), 
 	fecha_apertura DATE, 
 	operativo BOOLEAN);
+\COPY Proyectos FROM 'psql_proyectos.csv' DELIMITERS ',' CSV HEADER;
 
 
 DROP TABLE IF EXISTS Recursos;
@@ -28,29 +30,34 @@ CREATE TABLE Recursos(
 	fecha_apertura DATE, 
 	comuna VARCHAR(50), 
 	status VARCHAR(20));
+\COPY Recursos FROM 'psql_recursos.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS Mineras;
 CREATE TABLE Mineras(
 	mineral VARCHAR(50), 
 	pnombre VARCHAR(100) PRIMARY KEY, 
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
+\COPY Mineras FROM 'psql_mineras.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS Comunas;
 CREATE TABLE Comunas(
 	comuna VARCHAR(50) PRIMARY KEY, 
 	region VARCHAR(100));
+\COPY Comunas FROM 'psql_comunas.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS Centrales;
 CREATE TABLE Centrales(
 	pnombre VARCHAR(100) PRIMARY KEY, 
 	generacion VARCHAR(50),  
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
+\COPY Centrales FROM 'psql_centrales.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS Tramitados;
 CREATE TABLE Tramitados(
 	fecha_dictamen DATE, 
 	numero CHAR(14) PRIMARY KEY, 
 	FOREIGN KEY (numero) REFERENCES Recursos (numero) ON DELETE CASCADE);
+\COPY Tramitados FROM 'psql_tramitados.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS SociosProyectos;
 CREATE TABLE SociosProyectos(
@@ -59,6 +66,7 @@ CREATE TABLE SociosProyectos(
 	snombre VARCHAR(100), 
 	FOREIGN KEY (apellido, snombre) REFERENCES Socios (apellido, snombre) ON DELETE CASCADE,
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
+\COPY SociosProyectos FROM 'psql_syp.csv' DELIMITERS ',' CSV HEADER;
 
 DROP TABLE IF EXISTS RecursosProyectos;
 CREATE TABLE RecursosProyectos(
@@ -66,6 +74,7 @@ CREATE TABLE RecursosProyectos(
 	pnombre VARCHAR(100), 
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE,
 	FOREIGN KEY (numero) REFERENCES Recursos (numero) ON DELETE CASCADE);
+\COPY RecursosProyectos FROM 'psql_ryp.csv' DELIMITERS ',' CSV HEADER;
 
 
 # CONSULTAS
