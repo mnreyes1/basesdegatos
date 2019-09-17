@@ -21,13 +21,14 @@
 
 	<table>
     <tr>
+      <th>Apellido socio</th>
       <th>Nombre socio</th>
       <th>Nombre proyecto</th>
       <th>Numero recursos asociados al proyecto</th>
     </tr>
   <?php
 	foreach ($datos as $data) {
-  		echo "<tr> <td>$data[0]</td><td>$data[1]</td><td>$data[2]</td></tr>";
+  		echo "<tr> <td>$data[0]</td><td>$data[1]</td><td>$data[2]</td><td>$data[3]</td></tr>";
 	}
   ?>
 	</table>

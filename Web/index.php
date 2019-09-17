@@ -5,14 +5,6 @@
 
   <br>
 
-  <form align="center" action="consultas/consulta_0.php" method="post">
-    <input type="submit" value="Ver SyP">
-  </form>
-
-  <br>
-  <br>
-  <br>
-
   <form align="center" action="consultas/consulta_1.php" method="post">
     <input type="submit" value="Ver todas las centrales termoelectricas">
   </form>
