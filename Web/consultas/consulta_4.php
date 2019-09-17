@@ -6,8 +6,9 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-	# arreglar consulta
- 	$query = "SELECT * from syp;";
+ 	$query = "SELECT DISTINCT region FROM
+		  Recursos NATURAL JOIN Comunas
+		  WHERE status='en trámite';";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

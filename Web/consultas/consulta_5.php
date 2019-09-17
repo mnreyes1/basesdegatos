@@ -6,8 +6,14 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-	# arreglar consulta
- 	$query = "SELECT * FROM syp;";
+ 	$query = "SELECT apellido, snombre, pnombre, count FROM
+		  (SELECT pnombre, COUNT(*) AS count FROM
+		  Recursos NATURAL JOIN RecursosProyectos
+		  WHERE status='en trámite'
+		  GROUP BY pnombre) AS np NATURAL JOIN SociosProyectos 
+		  ORDER BY 
+		  apellido,
+		  count DESC;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

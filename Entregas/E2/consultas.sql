@@ -71,7 +71,8 @@ CREATE TABLE RecursosProyectos(
 # CONSULTAS
 
 #1
-SELECT pnombre FROM Centrales;
+SELECT pnombre FROM Centrales
+WHERE generacion='termoeléctrica';
 
 #2
 SELECT pnombre FROM Proyectos WHERE tipo='vertedero';
@@ -84,7 +85,7 @@ WHERE fecha_apertura >= '1990-01-01' AND fecha_apertura <= '2010-12-31';
 #4
 SELECT DISTINCT region FROM
 Recursos NATURAL JOIN Comunas
-Where status='en trámite';
+WHERE status='en trámite';
 
 #5
 SELECT apellido, snombre, pnombre, count FROM
@@ -97,5 +98,8 @@ apellido,
 count DESC;
 
 #6 
-
+SELECT DISTINCT pnombre FROM
+Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
+WHERE status='aprobado'
+AND operativo=True;
 

@@ -6,8 +6,7 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-	# arreglar consulta
- 	$query = "SELECT * from syp;";
+ 	$query = "SELECT pnombre FROM Proyectos WHERE tipo='vertedero';";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

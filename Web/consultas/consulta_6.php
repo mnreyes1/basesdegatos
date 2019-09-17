@@ -6,8 +6,10 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  	# arreglar consulta
- 	$query = "SELECT * FROM syp;";
+ 	$query = "SELECT DISTINCT pnombre FROM
+		  Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
+		  WHERE status='aprobado'
+		  AND operativo=True;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

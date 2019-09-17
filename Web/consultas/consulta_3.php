@@ -9,16 +9,9 @@
 	$fecha_inicio = $_POST["fecha_inicio"];
 	$fecha_final = $_POST["fecha_final"];
 
-	# Arreglar la consulta que esta toda cerda uwu
- 	$query = "SELECT Recursos.numero, Recursos.causa_contaminante, Recursos.area_influencia, 
-	 		  Recursos.descripcion, Recursos.fecha_apertura, Recursos.comuna_tramitacion, 
-			  CyR.region, Recursos.status
-	 		  FROM Recursos, Mineras, RyP, CyR 
-	 		  WHERE Recursos.numero=RyP.numero_recurso
-	 		  AND Mineras.nombre_proyecto=RyP.nombre_proyecto
-			  AND CyR.comuna=Recursos.comuna_tramitacion
-			  AND Recursos.fecha_apertura>'$fecha_inicio'
-			  AND Recursos.fecha_apertura<'$fecha_final';";
+	$query = "SELECT numero FROM 
+		  Recursos NATURAL JOIN RecursosProyectos NATURAL JOIN Mineras
+		  WHERE fecha_apertura >= '$fecha_inicio' AND fecha_apertura <= '$fecha_final';";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

@@ -6,8 +6,8 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT nombre_proyecto FROM Centrales
-	 		  WHERE tipo_generacion=termoeléctrica;";
+ 	$query = "SELECT pnombre FROM Centrales
+		  WHERE generacion='termoeléctrica';";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
