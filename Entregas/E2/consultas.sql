@@ -87,9 +87,14 @@ Recursos NATURAL JOIN Comunas
 Where status='en trámite';
 
 #5
-SELECT numero,pnombre FROM
+SELECT apellido, snombre, pnombre, count FROM
+(SELECT pnombre, COUNT(*) AS count FROM
 Recursos NATURAL JOIN RecursosProyectos
-WHERE 
+WHERE status='en trámite'
+GROUP BY pnombre) AS np NATURAL JOIN SociosProyectos 
+ORDER BY 
+apellido,
+count DESC;
 
 #6 
 
