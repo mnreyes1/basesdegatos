@@ -1,4 +1,4 @@
-mineral,nombre
+mineral,pnombre
 Cobre,Franke
 Cobre,San Gerónimo
 Cobre,Elenita
@@ -27,7 +27,6 @@ Yeso,El Volcán
 Cobre,El Soldado
 Yodo,ACF - Lagunas
 Yodo,III de Atacama Minerals - Aguas Blancas
-Nitratos,III de Atacama Minerals - Aguas Blancas
 Oro,Chimberos
 Hierro,CMP - Algarrobo
 Cobre,Montecristo
@@ -35,13 +34,10 @@ Hidrocarburos,Lenga
 Cobre,Julia
 Diatomitas,Laguna Siren
 Oro,Alhué
-Cinc,Alhué
 Cobre,Chuquicamata
 Manganeso,Maganeso III de Atacama
 Litio,SCL Chemetall
 Oro,Pirquitas
-Plata,Pirquitas
-Cobre,Pirquitas
 Cobre,Collahuasi
 Cobre,Faride
 Pumicita,María Elisa
@@ -60,11 +56,8 @@ Cobre,Altamira
 Cobre,El Salvador
 Cobre,Sierra Miranda
 Cobre,El Morro
-Oro,El Morro
 Cobre,Pucobre
 Cobre,La Marcelina
-Silicio,La Marcelina
-Diamante,La Marcelina
 Cobre,Gabriela Mistral
 Cobre,Antucoya
 Cobre,Carola
@@ -86,14 +79,11 @@ Boratos,Cóndor
 Sal,Punta de Lobos - Kanita
 Oro,Marte Lobo
 Cinc,El Toqui
-Oro,El Toqui
-Plata,El Toqui
 Cobre,Chimborazo
 Oro,Cerro Casale
 Hierro,CMP - Los Colorados
 Diatomitas,La Picarda
 Yodo,Cosayach - Cala Cala
-Nitratos,Cosayach - Cala Cala
 Cobre,Punitaqui
 Carbón,Schwager
 Cobre,Pampa Camarones
@@ -109,7 +99,6 @@ Lapislázuli,Flor de Los Andes
 Carbón,Isla Riesco
 Cobre,Iván
 Yodo,Cosayach - Negreiros
-Nitratos,Cosayach - Negreiros
 Cobre,Delta
 Cobre,Tres Valles
 Oro,Pascua
