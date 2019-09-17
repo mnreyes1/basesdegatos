@@ -77,7 +77,10 @@ Esquema
 		\item \texttt{Comunas(\underline{comuna}: string, region: string)} 
 	\end{itemize}
 
-\textbf{BCNF:} %explicacion de porque esta en BCNF
+\subsection{BCNF}
+	El esquema anterior está casi en 3NF porque los atributos que no son llave en cada tabla no dependen de un atributo que no sea llave, con la única excepción del atributo \texttt{comuna} que depende de la \texttt{latitud} y \texttt{longitud} (\texttt{latitud,longitud} $\rightarrow$ \texttt{comuna}) y \texttt{latitud,comuna} no es llave candidata en \texttt{Proyectos}. No consideramos este caso por ser de precisión geográfica exacta, hacer una tabla que rompa la dependencia sería redundante y consumiría espacio de más (tener un proyecto localizado en el mismo lugar que otro proyecto no tiene mucho sentido). Aún así, para poder obtener de manera correcta 3NF debemos crear una nueva relación \texttt{Localizacion(\underline{latitud}: string, \underline{longitud}:string, comuna:string)} y redifinir \texttt{Proyectos} quitando el atributo \texttt{comuna}.\\
+
+	Con el cambio anterior, el esquema además está en BCNF dado que está en 3NF y no hay dependencias que no sean superconjuntos de llaves candidatas. Esto primero se da porque todas las relaciones tienen o una llave candidata o ninguna con la excepción de \texttt{Socios}; como ya vimos que están en 3NF, todas los atributos dependen de alguna  llave, luego es trivial que se cumpla que son superconjuntos de las llave candidata (pues tienen a lo más un elemento). El único caso especial es en la relación \texttt{Socios}, pero en este caso la dependencia es que \texttt{snombre,apellido} $\rightarrow$ \texttt{nacionalidad}, es decir, es superconjunto de la llave candidata. 
 
 \section{Comandos usados para crear tablas}
 
