@@ -6,7 +6,9 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT pnombre FROM Proyectos WHERE tipo='vertedero';";
+ 	$query = "SELECT pnombre FROM Proyectos NATURAL JOIN Comunas 
+	 		  WHERE tipo='vertedero'
+	 		  AND region LIKE '%Metropolitana%';";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();

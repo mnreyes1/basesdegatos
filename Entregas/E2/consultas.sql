@@ -75,7 +75,9 @@ SELECT pnombre FROM Centrales
 WHERE generacion='termoeléctrica';
 
 #2
-SELECT pnombre FROM Proyectos WHERE tipo='vertedero';
+SELECT pnombre FROM Proyectos NATURAL JOIN Comunas 
+WHERE tipo='vertedero'
+AND region LIKE '%Metropolitana%';
 
 #3
 SELECT numero FROM 

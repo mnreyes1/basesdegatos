@@ -9,7 +9,7 @@
  	$query = "SELECT DISTINCT pnombre FROM
 		  Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
 		  WHERE status='aprobado'
-		  AND operativo=True;";
+		  AND operativo=TRUE;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
