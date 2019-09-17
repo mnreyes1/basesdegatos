@@ -8,11 +8,59 @@
 \usepackage{epsfig}
 \usepackage{multicol}
 \usepackage{wasysym}
+\usepackage{listings}
+
+
 
 \usepackage[usenames,dvipsnames]{xcolor} 
 \usepackage{hyperref} 
 \definecolor{linkcolour}{rgb}{0,0.2,0.6} 
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour} 
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}  
+\color{bookColor}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple},
+    numberstyle=\numberstyle,
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=10pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+}
+\lstset{style=mystyle}
+\lstset{
+	extendedchars=\true,
+	inputencoding=utf8x
+}
+
+\lstset{
+	literate={á}{{\'a}}1
+			 {é}{{\'e}}1
+			 {ó}{{\'o}}1
+}
+
+\newcommand\numberstyle[1]{%
+    \footnotesize
+    \color{codegray}%
+    \ttfamily
+    \ifnum#1<10 0\fi#1 |%
+}
 
 \parindent 0pt
 \parskip 0pt
@@ -48,31 +96,23 @@ Nicolás Van Sint Jan
 \section{Diagrama E/R}
 
 \begin{figure}[h]	
-	\includegraphics[width=\textwidth]{ER_v1.png}
+	\includegraphics[scale=0.60]{ER_v1.png}
 	\caption{Diagrama Entidad/Relación}
 \end{figure}
 
-\pagebreak
-
 \section{Esquema}
-Notación
-	\begin{itemize}
-		\item \underline{subrrayado}: Llave primaria
-		\item \textit{cursiva}: Llave foránea
-	\end{itemize}
-Esquema
 
 	\begin{itemize}
 		\item \texttt{Socios(\underline{ssombre}: string, \underline{apellido}: string, nacionalidad: string)} 
-		\item \texttt{Proyectos(\underline{pnombre}: string, latitud: float, longitud: float, \textit{comuna}: string,\\ fecha\_apertura: string, operativo: string, tipo: string)} 
-		\item \texttt{Recursos(\underline{numero}: string, causa: string, area: float, descripcion: string,\\ fecha\_apertura: string, \textit{comuna}: string, status: string)}
-		\item \texttt{RecursosProyectos(\underline{\textit{numero}}: string, \textit{pnombre}: string)} 
+		\item \texttt{Proyectos(\underline{pnombre}: string, latitud: float, longitud: float, comuna: string,\\ fecha\_apertura: string, operativo: string, tipo: string)} 
+		\item \texttt{Recursos(\underline{numero}: string, causa: string, area: float, descripcion: string,\\ fecha\_apertura: string, comuna: string, status: string)}
+		\item \texttt{RecursosProyectos(\underline{numero}: string, pnombre: string)} 
 		
-		\item \texttt{SociosProyectos(\textit{snombre}: string, \textit{apellido}: string, \textit{pnombre}: string)} 
+		\item \texttt{SociosProyectos(snombre: string, apellido: string, pnombre: string)} 
 		 
-		\item \texttt{Mineras(\underline{\textit{pnombre}}: string, mineral: string)} 
-		\item \texttt{Centrales(\underline{\textit{pnombre}}: str, generacion: string)} 
-		\item \texttt{Tramitados(\underline{\textit{numero}}: string, fecha\_dictamen: string)} 
+		\item \texttt{Mineras(\underline{pnombre}: string, mineral: string)} 
+		\item \texttt{Centrales(\underline{pnombre}: str, generacion: string)} 
+		\item \texttt{Tramitados(\underline{numero}: string, fecha\_dictamen: string)} 
 		
 		\item \texttt{Comunas(\underline{comuna}: string, region: string)} 
 	\end{itemize}
@@ -80,14 +120,15 @@ Esquema
 \textbf{BCNF:} %explicacion de porque esta en BCNF
 
 \section{Comandos usados para crear tablas}
+\begin{lstlisting}[language=SQL]
+# COMANDOS PARA CREAR TABLAS
 
-\begin{verbatim}
 DROP TABLE IF EXISTS Socios;
 CREATE TABLE Socios(
 	snombre VARCHAR(100),
 	apellido VARCHAR(100),
 	nacionalidad VARCHAR(100));
-\COPY Socios FROM 'psql_socios.csv' DELIMITERS ',' CSV HEADER;
+\COPY Socios FROM "psql_socios.csv" DELIMITERS "," CSV HEADER;
 
 
 DROP TABLE IF EXISTS Proyectos;
@@ -99,7 +140,7 @@ CREATE TABLE Proyectos(
 	comuna VARCHAR(50), 
 	fecha_apertura DATE, 
 	operativo BOOLEAN);
-\COPY Proyectos FROM 'psql_proyectos.csv' DELIMITERS ',' CSV HEADER;
+\COPY Proyectos FROM "psql_proyectos.csv" DELIMITERS "," CSV HEADER;
 
 
 DROP TABLE IF EXISTS Recursos;
@@ -111,34 +152,34 @@ CREATE TABLE Recursos(
 	fecha_apertura DATE, 
 	comuna VARCHAR(50), 
 	status VARCHAR(20));
-\COPY Recursos FROM 'psql_recursos.csv' DELIMITERS ',' CSV HEADER;
+\COPY Recursos FROM "psql_recursos.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS Mineras;
 CREATE TABLE Mineras(
 	mineral VARCHAR(50), 
 	pnombre VARCHAR(100) PRIMARY KEY, 
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
-\COPY Mineras FROM 'psql_mineras.csv' DELIMITERS ',' CSV HEADER;
+\COPY Mineras FROM "psql_mineras.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS Comunas;
 CREATE TABLE Comunas(
 	comuna VARCHAR(50) PRIMARY KEY, 
 	region VARCHAR(100));
-\COPY Comunas FROM 'psql_comunas.csv' DELIMITERS ',' CSV HEADER;
+\COPY Comunas FROM "psql_comunas.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS Centrales;
 CREATE TABLE Centrales(
 	pnombre VARCHAR(100) PRIMARY KEY, 
 	generacion VARCHAR(50),  
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
-\COPY Centrales FROM 'psql_centrales.csv' DELIMITERS ',' CSV HEADER;
+\COPY Centrales FROM "psql_centrales.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS Tramitados;
 CREATE TABLE Tramitados(
 	fecha_dictamen DATE, 
 	numero CHAR(14) PRIMARY KEY, 
 	FOREIGN KEY (numero) REFERENCES Recursos (numero) ON DELETE CASCADE);
-\COPY Tramitados FROM 'psql_tramitados.csv' DELIMITERS ',' CSV HEADER;
+\COPY Tramitados FROM "psql_tramitados.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS SociosProyectos;
 CREATE TABLE SociosProyectos(
@@ -147,7 +188,7 @@ CREATE TABLE SociosProyectos(
 	snombre VARCHAR(100), 
 	FOREIGN KEY (apellido, snombre) REFERENCES Socios (apellido, snombre) ON DELETE CASCADE,
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE);
-\COPY SociosProyectos FROM 'psql_syp.csv' DELIMITERS ',' CSV HEADER;
+\COPY SociosProyectos FROM "psql_syp.csv" DELIMITERS "," CSV HEADER;
 
 DROP TABLE IF EXISTS RecursosProyectos;
 CREATE TABLE RecursosProyectos(
@@ -155,62 +196,56 @@ CREATE TABLE RecursosProyectos(
 	pnombre VARCHAR(100), 
 	FOREIGN KEY (pnombre) REFERENCES Proyectos (pnombre) ON DELETE CASCADE,
 	FOREIGN KEY (numero) REFERENCES Recursos (numero) ON DELETE CASCADE);
-\COPY RecursosProyectos FROM 'psql_ryp.csv' DELIMITERS ',' CSV HEADER;
-\end{verbatim}
+\COPY RecursosProyectos FROM "psql_ryp.csv" DELIMITERS "," CSV HEADER;
 
+\end{lstlisting}
 
 \section{Consultas}
 
-\begin{enumerate}
-	\item \begin{verbatim}
+\begin{lstlisting}[language=SQL]
+# CONSULTAS
+
+#1 Todas las centrales termoeléctricas
 SELECT pnombre FROM Centrales
-WHERE generacion='termoeléctrica';
-\end{verbatim}
+WHERE generacion="termoeléctrica";
 
-\item \begin{verbatim}
-SELECT pnombre FROM Proyectos NATURAL JOIN Comunas 
-WHERE tipo='vertedero'
-AND region LIKE '%Metropolitana%';
-\end{verbatim}
+#2 Todos los vertederos de la Región Metropolitana
+SELECT pnombre FROM 
+Proyectos NATURAL JOIN Comunas  
+WHERE tipo="vertedero" AND region="Metropolitana de Santiago";
 
-\item \begin{verbatim}
+#3 Todos los recursos asociados a minas, abiertos entre una fecha a y una fecha b
 SELECT numero FROM 
 Recursos NATURAL JOIN RecursosProyectos NATURAL JOIN Mineras
-WHERE fecha_apertura >= '1990-01-01' AND fecha_apertura <= '2010-12-31';
-\end{verbatim}
+WHERE fecha_apertura >= "1990-01-01" AND fecha_apertura <= "2010-12-31";
 
-\item \begin{verbatim}
+#4 Todas las regiones que tienen algun recurso vigente
 SELECT DISTINCT region FROM
 Recursos NATURAL JOIN Comunas
-WHERE status='en trámite';
-\end{verbatim}
+WHERE status="en trámite";
 
-\item \begin{verbatim}
+#5 Para cada socio, todos sus proyectos, ordenados por cantidad de recursos en trámite
 SELECT apellido, snombre, pnombre, count FROM
 (SELECT pnombre, COUNT(*) AS count FROM
 Recursos NATURAL JOIN RecursosProyectos
-WHERE status='en trámite'
+WHERE status="en trámite"
 GROUP BY pnombre) AS np NATURAL JOIN SociosProyectos 
 ORDER BY 
 apellido,
 count DESC;
-\end{verbatim}
 
-\item \begin{verbatim}
-SELECT DISTINCT Proyectos.pnombre FROM Recursos, RecursosProyectos, Proyectos 
-WHERE Proyectos.pnombre=RecursosProyectos.pnombre 
-AND Recursos.numero=RecursosProyectos.numero
-AND Recursos.status='aprobado'
-AND Proyectos.operativo=TRUE;
-\end{verbatim}
+#6 Todos los proyectos que siguen en operación a pesar de que hay un recurso aprobado para ellos
+SELECT DISTINCT pnombre FROM
+Proyectos NATURAL JOIN RecursosProyectos NATURAL JOIN Recursos
+WHERE status="aprobado"
+AND operativo=True;
+\end{lstlisting}
 
-\end{enumerate}
 
 \section{Supuestos extra}
 \begin{itemize}
 	\item Dado que existían mineras con múltiples minerales, se decidió dejar solo uno (el primero de la lista en los datos originales) para poder usar la llave primaria del nombre de la minera (como se sugiere en la issue \href{https://github.com/IIC2413/Syllabus-2019-2/issues/50}{\#50}).
 \end{itemize}
-
 
 \end{document}
 
