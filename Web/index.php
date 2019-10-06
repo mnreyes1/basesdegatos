@@ -10,12 +10,17 @@ if (session_status() == PHP_SESSION_NONE) {
 
   <?php 
   if ($_SESSION['user_name']){
+    echo("<button style='position: absolute; right: 0;' onclick=\"location.href='login/cerrar_sesion.php'\">Cerrar sesion</button>");
     echo "<p align='center'> Bienvenido " . $_SESSION['user_name'] . "</p>";
   }
   else{
+    echo("<button style='position: absolute; right: 0;' onclick=\"location.href='login/index.php'\">Iniciar sesion</button>");
   }
   ?>
   
+  <br>
+  <br>
+  <br>
   <br>
   
   <form align="center" action="consultas/consulta_1.php" method="post">

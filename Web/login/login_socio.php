@@ -10,7 +10,7 @@
 <div style="text-align: center;">
     <h2>Ingresar como socio</h2>
     
-    <form action="/action_page.php" method="post">
+    <form action="validar_socio.php" method="post">
     
     <div class="container">
       <label for="uname"><b>Nombre y apellido socio</b></label>

@@ -17,7 +17,7 @@ input[type=submit] {
 }
 
 button {
-    background-color: green;
+    background-color: rgb(57, 11, 224);
     color: white;
     border: none;
     border-radius: 5px;

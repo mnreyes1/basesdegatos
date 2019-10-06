@@ -6,18 +6,21 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-	$ong = $_POST["uname"];
+  $socio = $_POST["uname"];
+  $pieces = explode(" ", $socio);
 
-	$query = "SELECT * FROM Proyectos
-        	WHERE pnombre ILIKE '%$ong%';";
+	$query = "SELECT * FROM Socios
+        	WHERE snombre ILIKE '%$pieces[0]%'
+          AND apellido ILIKE '%$pieces[1]%';";
 	$result = $db1 -> prepare($query);
 	$result -> execute();
     $datos = $result -> fetch();
     session_start();
     
     if ($datos){
-        $_SESSION['user_name'] = $datos[1];
-        $_SESSION['type']   = 'ong';
+        $_SESSION['user_name'] = $datos[0];
+        $_SESSION['user_last_name'] = $datos[1];
+        $_SESSION['type'] = 'socio';
         header('Location: ../index.php');
     }
     else{
