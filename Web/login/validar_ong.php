@@ -1,7 +1,5 @@
 <?php include('../templates/header.html');   ?>
 
-<?php include('../templates/top_buttons.html'); ?>
-
 <body>
 
 <?php

@@ -1,7 +1,5 @@
 <link href="../styles/login.css" rel="stylesheet">
 
-<?php include('../templates/top_buttons.html'); ?>
-
 <!DOCTYPE php>
 <html>
     <head>
