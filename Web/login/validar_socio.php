@@ -29,6 +29,6 @@
   ?>
 
 <br>
-<form action="../login/login_ong.php" method="get">
+<form action="../login/login_socio.php" method="get">
     <input type="submit" value="Volver">
 </form>
