@@ -12,7 +12,7 @@
 	$query = "SELECT numero FROM 
 		  Recursos NATURAL JOIN RecursosProyectos NATURAL JOIN Mineras
 		  WHERE fecha_apertura >= '$fecha_inicio' AND fecha_apertura <= '$fecha_final';";
-	$result = $db -> prepare($query);
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>

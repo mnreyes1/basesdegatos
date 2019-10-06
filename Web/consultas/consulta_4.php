@@ -9,7 +9,7 @@
  	$query = "SELECT DISTINCT region FROM
 		  Recursos NATURAL JOIN Comunas
 		  WHERE status='en trámite';";
-	$result = $db -> prepare($query);
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>

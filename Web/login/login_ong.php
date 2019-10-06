@@ -1,4 +1,7 @@
 <link href="../styles/login.css" rel="stylesheet">
+
+<?php include('../templates/top_buttons.html'); ?>
+
 <!DOCTYPE php>
 <html>
     <head>
@@ -9,7 +12,7 @@
 <div style="text-align: center;">
     <h2>Ingresar como ONG</h2>
     
-    <form action="/action_page.php" method="post">
+    <form action="validar_ong.php" method="post">
     
     <div class="container">
       <label for="uname"><b>Nombre ONG</b></label>

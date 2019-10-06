@@ -8,7 +8,7 @@
 
  	$query = "SELECT pnombre FROM Centrales
 		  WHERE generacion='termoeléctrica';";
-	$result = $db -> prepare($query);
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>

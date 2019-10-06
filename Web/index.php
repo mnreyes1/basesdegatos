@@ -1,12 +1,25 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+?>
+
 <?php include('templates/header.html');   ?>
 
 <body>
-  <h1 align="center">Entrega 2</h1>
 
+  <?php 
+  if ($_SESSION['user_name']){
+    echo "<p align='center'> Bienvenido " . $_SESSION['user_name'] . "</p>";
+  }
+  else{
+  }
+  ?>
+  
   <br>
-
+  
   <form align="center" action="consultas/consulta_1.php" method="post">
-    <input type="submit" value="Ver todas las centrales termoelectricas">
+  <input type="submit" value="Ver todas las centrales termoelectricas">
   </form>
   
   <br>

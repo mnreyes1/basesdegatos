@@ -1,5 +1,9 @@
 <link href="../styles/login.css" rel="stylesheet">
+
+<?php include('../templates/top_buttons.html'); ?>
+
 <div style="text-align: center;">
+
 <h1>¿Como desea ingresar?</h1>
 <br>
 <body>

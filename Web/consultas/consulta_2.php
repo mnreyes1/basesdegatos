@@ -9,7 +9,7 @@
  	$query = "SELECT pnombre FROM Proyectos NATURAL JOIN Comunas 
 	 		  WHERE tipo='vertedero'
 	 		  AND region LIKE '%Metropolitana%';";
-	$result = $db -> prepare($query);
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>

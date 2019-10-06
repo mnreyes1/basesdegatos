@@ -14,7 +14,7 @@
 		  ORDER BY 
 		  apellido,
 		  count DESC;";
-	$result = $db -> prepare($query);
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>
