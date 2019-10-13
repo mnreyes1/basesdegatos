@@ -30,6 +30,14 @@ if (session_status() == PHP_SESSION_NONE) {
   <br>
   <br>
   <br>
+  
+  <form align="center" action="consultas/consulta_ongs.php" method="post">
+  <input type="submit" value="Ver todas las ONGs">
+  </form>
+  
+  <br>
+  <br>
+  <br>
 
   <form align="center" action="consultas/consulta_2.php" method="post">
     <input type="submit" value="Ver todos los vertederos de RM">
