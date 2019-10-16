@@ -1,27 +1,18 @@
+<?php $id = $_GET['id']; ?>
+
 <?php include('../templates/header.html');   ?>
 
 <?php include('../templates/footer.html'); ?>
 
 <body>
 
-<table>
-   <tr>
-     <td>A</td>
-     <td>B</td>
-   </tr>
-   <tr>
-     <td><a href="detalle_ong.php?id=0">Consulta</a></td>
-     <td>D</td>
-   </tr>
-</table>
-
-<?php echo "<a href=\"detalle_ong.php?id=0\">Consulta</a>"; ?>
+<a href="consulta_1.php">Consulta</a>
 
 <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT nombre FROM ONG;";
+ 	$query = "SELECT nombre FROM ONG where id = ".$id.";";
 	$result = $db2 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
@@ -33,7 +24,7 @@
     </tr>
   <?php
 	foreach ($datos as $data) {
-  		echo "<tr> <td><a href=\"detalle_ong.php?id=0\">$data[0]</a></td></tr>";
+  		echo "<tr> <td>$data[0]</td></tr>";
 	}
   ?>
 	</table>
