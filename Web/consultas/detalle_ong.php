@@ -6,9 +6,9 @@
 
 <body>
 
-<a href="consulta_1.php">Consulta</a>
+    <a href="consulta_1.php">Consulta</a>
 
-<?php
+    <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
@@ -18,15 +18,15 @@
 	$datos = $result -> fetchAll();
   ?>
 
-	<table>
-    <tr>
-      <th>Nombre ONG</th>
-    </tr>
-  <?php
+    <table>
+        <tr>
+            <th>Nombre ONG</th>
+        </tr>
+        <?php
 	foreach ($datos as $data) {
   		echo "<tr> <td>$data[0]</td></tr>";
 	}
   ?>
-	</table>
+    </table>
 
-<?php include('../templates/footer.html'); ?>
+    <?php include('../templates/footer.html'); ?>

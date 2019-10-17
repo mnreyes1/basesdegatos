@@ -1,90 +1,81 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
 ?>
 
-<?php include('templates/header.html');   ?>
+<?php include 'templates/header.html';?>
 
 <body>
 
-  <?php 
-  if ($_SESSION['user_name']){
-    echo("<button style='position: absolute; right: 0;' onclick=\"location.href='login/cerrar_sesion.php'\">Cerrar sesion</button>");
-    echo "<p align='center'> Bienvenido " . $_SESSION['user_name'] . "</p>";
-  }
-  else{
-    echo("<button style='position: absolute; right: 0;' onclick=\"location.href='login/index.php'\">Iniciar sesion</button>");
-  }
-  ?>
-  
-  <br>
-  <br>
-  <br>
-  
-  <form align="center" action="consultas/consulta_ongs.php" method="post">
-  <input type="submit" value="Ver todas las ONGs">
-  </form>
-  
-  <br>
-  <br>
-  <br>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Home')" id="defaultOpen">Home</button>
+        <button class="tablinks" onclick="openCity(event, 'Socio')">Menu socio</button>
+        <button class="tablinks" onclick="openCity(event, 'ONG')">Menu ONG</button>
+    </div>
 
 
+    <div class="container-home">
 
+        <div id="Home" class="tabcontent">
+            <form align="center" action="consultas/consulta_ongs.php" method="post">
+                <input type="submit" value="Ver todas las ONGs">
+            </form>
 
+        </div>
 
-
-
-
-
-
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-</div>
-
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-
-<script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+        <div id="Socio" class="tabcontent">
+            <?php
+if ($_SESSION['user_name']) {
+    if ($_SESSION['type'] != "ong") {
+        echo ("<button onclick=\"location.href='login/cerrar_sesion.php'\">Cerrar sesion</button>");
+        echo "<p align='center'> Bienvenido " . $_SESSION['user_name'] . "</p>";
+    } else {
+        echo "No se puede ingresar a este menu, pues ya esta logeado como ONG";
+    }
+} else {
+    echo ("<button onclick=\"location.href='login/login_socio.php'\">Iniciar sesion</button>");
 }
+?>
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+        </div>
 
+        <div id="ONG" class="tabcontent">
+            <?php
+if ($_SESSION['user_name']) {
+    if ($_SESSION['type'] != "socio") {
+        echo ("<button onclick=\"location.href='login/cerrar_sesion.php'\">Cerrar sesion</button>");
+        echo "<p align='center'> Bienvenido " . $_SESSION['user_name'] . "</p>";
+    } else {
+        echo "No se puede ingresar a este menu, pues ya esta logeado como Socio";
+    }
+} else {
+    echo ("<button onclick=\"location.href='login/login_ong.php'\">Iniciar sesion</button>");
+}
+?>
+        </div>
 
+    </div>
 
+    <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-
-
-
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
 
 </body>
+
 </html>

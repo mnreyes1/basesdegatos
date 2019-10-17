@@ -1,11 +1,12 @@
-<link href="../styles/login.css" rel="stylesheet">
+<link href="../styles/style.css" rel="stylesheet">
 
 <div style="text-align: center;">
 
-<h1>¿Como desea ingresar?</h1>
-<br>
-<body>
-    <div style="text-align: center;">
+    <h1>¿Como desea ingresar?</h1>
+    <br>
+
+    <body>
+        <div style="text-align: center;">
             <form align="center" action="login_socio.php" method="post">
                 <button type="submit">Ingresar como socio</button>
             </form>
@@ -15,9 +16,9 @@
             </form>
 
             <div class="container" style="background-color:#f1f1f1">
-            <button onclick="history.go(-1);" class="cancelbtn">Volver </button>
+                <button onclick="history.go(-1);" class="cancelbtn">Volver </button>
             </div>
-    </form>
-    </div>
-</body>
+            </form>
+        </div>
+    </body>
 </div>
