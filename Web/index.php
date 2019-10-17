@@ -21,15 +21,6 @@ if (session_status() == PHP_SESSION_NONE) {
   <br>
   <br>
   <br>
-  <br>
-  
-  <form align="center" action="consultas/consulta_1.php" method="post">
-  <input type="submit" value="Ver todas las centrales termoelectricas">
-  </form>
-  
-  <br>
-  <br>
-  <br>
   
   <form align="center" action="consultas/consulta_ongs.php" method="post">
   <input type="submit" value="Ver todas las ONGs">
@@ -39,54 +30,60 @@ if (session_status() == PHP_SESSION_NONE) {
   <br>
   <br>
 
-  <form align="center" action="consultas/consulta_2.php" method="post">
-    <input type="submit" value="Ver todos los vertederos de RM">
-  </form>
-  
-  <br>
-  <br>
-  <br>
 
-  <h3 align="center">Ver recursos asociados a minas entre las siguientes fechas:</h3>
 
-  <form align="center" action="consultas/consulta_3.php" method="post">
-    Fecha inicio:
-    <input type="text" name="fecha_inicio">
-    <br/>
-    Fecha final:
-    <input type="text" name="fecha_final">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-  
-  
-  <br>
-  <br>
-  <br>
 
-  <form align="center" action="consultas/consulta_4.php" method="post">
-    <input type="submit" value="Ver regiones con algun recurso vigente">
-  </form>
-  
-  <br>
-  <br>
-  <br>
 
-  <form align="center" action="consultas/consulta_5.php" method="post">
-    <input type="submit" value="Ver socios y todos sus proyectos">
-  </form>
-  
-  <br>
-  <br>
-  <br>
 
-  <form align="center" action="consultas/consulta_6.php" method="post">
-    <input type="submit" value="Ver proyectos en operación con recurso aprobado">
-  </form>
-  
-  <br>
-  <br>
-  <br>
+
+
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+
+
+
+
 
 
 </body>

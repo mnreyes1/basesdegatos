@@ -12,8 +12,8 @@ $socio = $_POST["uname"];
 $pieces = explode(" ", $socio);
 
 $query = "SELECT * FROM Socios
-        	WHERE snombre ILIKE '%$pieces[0]%'
-          AND apellido ILIKE '%$pieces[1]%';";
+        	WHERE snombre ILIKE '$pieces[0]'
+          AND apellido ILIKE '$pieces[1]';";
 $result = $db1->prepare($query);
 $result->execute();
 $datos = $result->fetch();
