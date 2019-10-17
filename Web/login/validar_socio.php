@@ -1,4 +1,6 @@
-<?php include '../templates/header.html';?>
+
+<link href="../styles/login.css" rel="stylesheet">
+
 
 <body>
 
@@ -28,6 +30,9 @@ if ($datos) {
 ?>
 
 <br>
-<form action="../login/login_socio.php" method="get">
-    <input type="submit" value="Volver">
-</form>
+
+<div class="container" style="background-color:#f1f1f1">
+      <button onclick="history.go(-1);" class="cancelbtn">Volver </button>
+      </div>
+    </form>
+

@@ -29,7 +29,7 @@
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Volver</button>
+      <button onclick="history.go(-1);" class="cancelbtn">Volver </button>
       </div>
     </form>
 
