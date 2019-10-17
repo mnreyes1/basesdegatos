@@ -2,7 +2,9 @@
 
 <?php include('../templates/header.html');   ?>
 
-<?php include('../templates/footer.html'); ?>
+<div class="container-home" style="background-color:#f1f1f1">
+    <button onclick="history.go(-1);" class="cancelbtn">Volver</button>
+</div>
 
 <body>
 
@@ -29,4 +31,6 @@
   ?>
     </table>
 
-    <?php include('../templates/footer.html'); ?>
+</body>
+
+</html>
