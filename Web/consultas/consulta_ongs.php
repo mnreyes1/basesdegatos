@@ -6,19 +6,6 @@
         <button onclick="history.go(-1);" class="cancelbtn">Volver</button>
     </div>
 
-    <table>
-        <tr>
-            <td>A</td>
-            <td>B</td>
-        </tr>
-        <tr>
-            <td><a href="detalle_ong.php?id=0">Consulta</a></td>
-            <td>D</td>
-        </tr>
-    </table>
-
-    <?php echo "<a href=\"detalle_ong.php?id=0\">Consulta</a>"; ?>
-
     <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
