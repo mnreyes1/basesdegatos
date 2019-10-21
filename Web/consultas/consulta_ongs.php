@@ -22,7 +22,7 @@
         </tr>
         <?php
 	foreach ($datos as $data) {
-  		echo "<tr> <td><a href=\"detalle_ong.php?id=0\">$data[0]</a></td></tr>";
+  		echo "<tr> <td><a href=\"detalle_ong.php?id=$data[0]\">$data[0]</a></td></tr>";
 	}
   ?>
     </table>
