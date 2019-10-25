@@ -7,9 +7,10 @@ if (session_status() == PHP_SESSION_NONE) {
 require "../config/conexion.php";
 
 $ong = $_POST["uname"];
+$psw = $_POST["psw"];
 
-$query = "SELECT * FROM ong
-        	WHERE nombre ILIKE '$ong';";
+$query = "SELECT * FROM passwords
+        	WHERE nombre ILIKE '$ong' AND password='$psw';";
 $result = $db2->prepare($query);
 $result->execute();
 $datos = $result->fetch();

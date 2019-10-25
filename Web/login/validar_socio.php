@@ -7,11 +7,12 @@ if (session_status() == PHP_SESSION_NONE) {
 require "../config/conexion.php";
 
 $socio = $_POST["uname"];
+$psw = $_POST["psw"];
 $pieces = explode(" ", $socio);
 
-$query = "SELECT * FROM Socios
+$query = "SELECT * FROM passwords
         	WHERE snombre ILIKE '$pieces[0]'
-          AND apellido ILIKE '$pieces[1]';";
+          AND apellido ILIKE '$pieces[1]' AND password='$psw';";
 $result = $db1->prepare($query);
 $result->execute();
 $datos = $result->fetch();
