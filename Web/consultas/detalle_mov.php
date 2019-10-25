@@ -65,7 +65,7 @@
             <tr>
                 <th>Tipo de contenido</th>
                 <th>Fecha</th>
-                <th>Duración</th>
+                <th>Duración (días)</th>
             </tr>
             <?php
     	       foreach ($datos2 as $data) {
