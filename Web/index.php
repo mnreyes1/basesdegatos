@@ -18,6 +18,9 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container-home">
 
         <div id="Home" class="tabcontent">
+            <form align="center" action="consultas/consulta_proy.php" method="post">
+                <input type="submit" value="Ver todos los proyectos">
+            </form>
             <form align="center" action="consultas/consulta_ongs.php" method="post">
                 <input type="submit" value="Ver todas las ONGs">
             </form>
