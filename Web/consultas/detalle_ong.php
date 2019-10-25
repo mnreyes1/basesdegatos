@@ -20,6 +20,7 @@
   ?>
 
     <table cellspacing=5>
+        <caption>Tabla1</captoin>
         <tr>
             <th>Nombre ONG</th>
             <th>País</th>
