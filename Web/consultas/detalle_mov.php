@@ -42,7 +42,7 @@
       <th>Redes Sociales</th>
     </tr>
     <tr valign=top>
-      <td>
+      <td bgcolor=lightgreen>
         <table cellspacing=5>
             <tr>
                 <th>Fecha</th>
@@ -60,7 +60,7 @@
                    ?>
         </table>
       </td>
-      <td>
+      <td bgcolor = lightblue>
         <table cellspacing=5>
             <tr>
                 <th>Tipo de contenido</th>
