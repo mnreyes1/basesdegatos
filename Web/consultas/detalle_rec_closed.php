@@ -17,8 +17,8 @@
   require("../config/conexion.php");
 
   $query2 = "SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, fecha_dictamen, status, nombre as comnombre,
-  ongnombre, proynombre FROM
+  descripcion, fecha_apertura, fecha_dictamen, status,
+  nombre as comnombre, proynombre FROM
   (SELECT * FROM
   (SELECT recursoid, causa_contaminante, area_influencia,
   descripcion, fecha_apertura, status, ongnombre,
@@ -54,7 +54,7 @@
               <th>Fecha del dictamen</th>
               <th>Status</th>
               <th>Comuna</th>
-              <th>ONG</th>
+              <th>ONGs participantes</th>
               <th>Proyecto</th>
             </tr>
             <?php
@@ -68,8 +68,8 @@
                  <td align=center>$data[5]</td>
                  <td align=center>$data[6]</td>
                  <td align=center>$data[7]</td>
-                 <td align=center>$data[8]</td>
-                 <td><a href=\"detalle_proy.php?id=$data[9]\">$data[9]</a></td>
+                 <td><a href=\"rec_to_ongs.php?id=$data[0]\">ONGs</a></td>
+                 <td><a href=\"detalle_proy.php?id=$data[8]\">$data[8]</a></td>
                         </tr>";
     	             }
                    ?>
