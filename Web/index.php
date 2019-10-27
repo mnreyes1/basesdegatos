@@ -21,6 +21,15 @@ if (session_status() == PHP_SESSION_NONE) {
             <form align="center" action="consultas/consulta_proy.php" method="post">
                 <input type="submit" value="Ver todos los proyectos">
             </form>
+            <form align="center" action="consultas/proyecto_tipo.php?id=minera" method="post">
+                <input type="submit" value="Ver proyectos (minas)">
+            </form>
+            <form align="center" action="consultas/proyecto_tipo.php?id=central" method="post">
+                <input type="submit" value="Ver proyectos (centrales eléctricas)">
+            </form>
+            <form align="center" action="consultas/proyecto_tipo.php?id=vertedero" method="post">
+                <input type="submit" value="Ver proyectos (vertederos)">
+            </form>
             <form align="center" action="consultas/consulta_ongs.php" method="post">
                 <input type="submit" value="Ver todas las ONGs">
             </form>

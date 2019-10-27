@@ -16,32 +16,6 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $query = "SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, nombre as comnombre,
-  ongnombre, proynombre FROM
-  (SELECT * FROM
-  (SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, ongnombre,
-  nombre as proynombre, comunaid FROM
-  (SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, ongnombre,
-  proyectoid, comunaid FROM (
-  SELECT ongid, nombre as ongnombre, recursoid FROM (
-  SELECT id, nombre from ong WHERE nombre = '".$nombre."') as ongs
-  INNER JOIN o_r on ongs.id = o_r.ongid) as recs
-  INNER JOIN recurso on recs.recursoid = recurso.id) as proy
-  INNER JOIN proyecto on proy.proyectoid = proyecto.id) as com
-  INNER JOIN comuna on com.comunaid = comuna.id) as total
-  NATURAL JOIN recursoabierto;";
-	$result = $db2 -> prepare($query);
-	$result -> execute();
-	$datos = $result -> fetchAll();
-  ?>
-
-  <?php
-  #Llama a conexión, crea el objeto PDO y obtiene la variable $db
-  require("../config/conexion.php");
-
   $query2 = "SELECT recursoid, causa_contaminante, area_influencia,
   descripcion, fecha_apertura, fecha_dictamen, status, nombre as comnombre,
   ongnombre, proynombre FROM
@@ -95,7 +69,7 @@
                  <td align=center>$data[6]</td>
                  <td align=center>$data[7]</td>
                  <td align=center>$data[8]</td>
-                 <td align=center>$data[9]</td>
+                 <td><a href=\"detalle_proy.php?id=$data[9]\">$data[9]</a></td>
                         </tr>";
     	             }
                    ?>
