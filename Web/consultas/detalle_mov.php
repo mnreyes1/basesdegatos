@@ -14,7 +14,7 @@
 
  	$query = "SELECT fecha, lugar, personas from (
   SELECT movilizacion.id, tipo from (
-  SELECT id, pais from ong WHERE nombre = '".$nombre."') as ongs
+  SELECT id from ong WHERE nombre = '".$nombre."') as ongs
   INNER JOIN movilizacion on ongs.id = movilizacion.ongid) as total
   NATURAL JOIN marcha;";
 	$result = $db2 -> prepare($query);
@@ -28,7 +28,7 @@
 
   $query2 = "SELECT tipo_contenido, fecha_comienzo, duracion from (
   SELECT movilizacion.id, tipo from (
-  SELECT id, pais from ong WHERE nombre = '".$nombre."') as ongs
+  SELECT id from ong WHERE nombre = '".$nombre."') as ongs
   INNER JOIN movilizacion on ongs.id = movilizacion.ongid) as total
   NATURAL JOIN movredessociales;";
 	$result2 = $db2 -> prepare($query2);

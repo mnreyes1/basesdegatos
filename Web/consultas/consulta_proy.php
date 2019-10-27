@@ -10,19 +10,20 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT nombre FROM ONG;";
-	$result = $db2 -> prepare($query);
+ 	$query = "SELECT pnombre FROM Proyectos;";
+	$result = $db1 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
   ?>
 
     <table>
         <tr>
-            <th>Nombre ONG</th>
+            <th>Nombre Proyecto</th>
         </tr>
         <?php
 	foreach ($datos as $data) {
-  		echo "<tr> <td><a href=\"detalle_ong.php?id=$data[0]\">$data[0]</a></td></tr>";
+  		echo "<tr align=center>
+        <td><a href=\"detalle_proy.php?id=$data[0]\">$data[0]</a></td></tr>";
 	}
   ?>
     </table>

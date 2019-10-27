@@ -12,7 +12,7 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
- 	$query = "SELECT nombre, pais, descripcion FROM ONG 
+ 	$query = "SELECT nombre, pais, descripcion FROM ONG
 	WHERE nombre = '".$nombre."';";
 	$result = $db2 -> prepare($query);
 	$result -> execute();
@@ -20,7 +20,6 @@
   ?>
 
     <table cellspacing=5>
-        <caption>Tabla1</captoin>
         <tr>
             <th>Nombre ONG</th>
             <th>País</th>
@@ -30,11 +29,12 @@
         </tr>
         <?php
 	foreach ($datos as $data) {
-  		echo "<tr> <td>$data[0]</td>
+  		echo "<tr>
+			   <td>$data[0]</td>
                            <td>$data[1]</td>
                            <td>$data[2]</td>
                            <td><a href=\"detalle_mov.php?id=$data[0]\">Movilizaciones</a></td>
-                           <td><a href=\"detalle_rec.php?id=$data[0]\">Recursos</a></td>
+                           <td><a href=\"detalle_rec_open.php?id=$data[0]\">Recursos</a></td>
                 </tr>";
 	}
   ?>
