@@ -6,6 +6,9 @@
 
     <div class="container-home" style="background-color:#f1f1f1">
         <button onclick="history.go(-1);" class="cancelbtn">Volver</button>
+        <form align="center" action="../index.php" method="post">
+            <button class="cancelbtn">Menú Principal</button>
+        </form>
     </div>
 
     <?php
