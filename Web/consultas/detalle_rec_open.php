@@ -1,6 +1,6 @@
 <?php $nombre = $_GET['id']; ?>
 
-<?php include('../templates/header.html');   ?>
+<?php include('../templates/header.php');   ?>
 
 <div class="container-home" style="background-color:#f1f1f1">
     <button onclick="history.go(-1);" class="cancelbtn">Volver</button>
@@ -14,31 +14,43 @@
   ?>
 </div>
 
-<body>
-
   <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $query = "SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, nombre as comnombre, proynombre FROM
-  (SELECT * FROM
-  (SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, ongnombre,
-  nombre as proynombre, comunaid FROM
-  (SELECT recursoid, causa_contaminante, area_influencia,
-  descripcion, fecha_apertura, status, ongnombre,
-  proyectoid, comunaid FROM (
-  SELECT ongid, nombre as ongnombre, recursoid FROM (
-  SELECT id, nombre from ong WHERE nombre = '".$nombre."') as ongs
-  INNER JOIN o_r on ongs.id = o_r.ongid) as recs
-  INNER JOIN recurso on recs.recursoid = recurso.id) as proy
-  INNER JOIN proyecto on proy.proyectoid = proyecto.id) as com
-  INNER JOIN comuna on com.comunaid = comuna.id) as total
-  NATURAL JOIN recursoabierto;";
+  $aux_query = "select nombre from proyecto where nombre = '$nombre';";
+  $result_aux = $db2 -> prepare($aux_query);
+  $result_aux -> execute();
+
+  if($result_aux -> fetchAll()){
+    $query = "SELECT recurso.id, recurso.causa_contaminante, recurso.area_influencia,
+  recurso.descripcion, recurso.fecha_apertura, recurso.status, comuna.nombre,
+  proyecto.nombre
+   FROM recurso, recursoabierto, proyecto, comuna
+    where recurso.id = recursoabierto.recursoid
+    and proyecto.nombre = '$nombre'
+    and proyecto.id = recurso.proyectoid
+    and comuna.id = recurso.comunaid;";
 	$result = $db2 -> prepare($query);
 	$result -> execute();
 	$datos = $result -> fetchAll();
+  }else{
+    $query = "SELECT recurso.id, recurso.causa_contaminante, recurso.area_influencia,
+  recurso.descripcion, recurso.fecha_apertura, recurso.status, comuna.nombre,
+  proyecto.nombre
+   FROM recurso, recursoabierto, ong, comuna, o_r, proyecto
+   where o_r.recursoid = recurso.id
+   and o_r.ongid = ong.id
+   and proyecto.id = recurso.proyectoid
+   and recurso.id = recursoabierto.recursoid
+   and ong.nombre = '$nombre'
+   and comuna.id = recurso.comunaid;";
+	$result = $db2 -> prepare($query);
+	$result -> execute();
+	$datos = $result -> fetchAll();
+  }
+
+  
   ?>
 
   <table cellspacing=10>

@@ -4,12 +4,10 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 
-<?php include 'templates/header.html';?>
-
-<body>
+<?php include 'templates/header.php';?>
 
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Home')" id="defaultOpen">Home</button>
+        <button class="tablinks" onclick="openCity(event, 'Home')" id="defaultOpen">Menu Principal</button>
         <button class="tablinks" onclick="openCity(event, 'Socio')">Menu socio</button>
         <button class="tablinks" onclick="openCity(event, 'ONG')">Menu ONG</button>
     </div>

@@ -24,11 +24,11 @@ if ($datos) {
 }
 ?>
 
-<link href="../styles/style.css" rel="stylesheet">
-
+<?php include 'templates/header.php';?>
 <br>
 
 <div class="container" style="background-color:#f1f1f1">
     <button onclick="history.go(-1);" class="cancelbtn">Volver </button>
 </div>
 </form>
+</body>

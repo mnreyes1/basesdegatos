@@ -1,11 +1,9 @@
-<link href="../styles/style.css" rel="stylesheet">
-
+<?php include 'templates/header.php';?>
 <div style="text-align: center;">
 
     <h1>¿Como desea ingresar?</h1>
     <br>
 
-    <body>
         <div style="text-align: center;">
             <form align="center" action="login_socio.php" method="post">
                 <button type="submit">Ingresar como socio</button>

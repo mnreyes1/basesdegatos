@@ -81,6 +81,12 @@ button:hover {
     background-color: #f44336;
 }
 
+.homebtn {
+    width: 10%;
+    padding: 10px 18px;
+    background-color: #20061f;
+}
+
 .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;

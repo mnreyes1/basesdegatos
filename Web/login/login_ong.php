@@ -1,13 +1,4 @@
-<link href="../styles/style.css" rel="stylesheet">
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
+<?php include 'templates/header.php';?>
 
     <div style="text-align: center;">
         <h2>Ingresar como ONG</h2>
