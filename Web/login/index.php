@@ -1,4 +1,5 @@
-<?php include 'templates/header.php';?>
+<?php include '../templates/header.php';?>
+
 <div style="text-align: center;">
 
     <h1>¿Como desea ingresar?</h1>

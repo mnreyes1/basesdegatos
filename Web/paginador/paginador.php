@@ -20,10 +20,18 @@ function paginate($query, $limit, $order_by, $db){
     return array($datos, $total_pages);
 }
 
-function get_links($total_pages){
-    for ($page=1; $page <= $total_pages ; $page++):
-        echo "<a href='?page=$page, class='links'>  $page  </a>";
-    endfor;
+function get_links($total_pages, $id=NULL){
+    if($id){
+        for ($page=1; $page <= $total_pages ; $page++):
+            echo "<button onclick='window.location.href=\"?id={$id}&page={$page}\"', class='pagebtn'> $page </a>";
+        endfor;
+    }
+    else{
+        for ($page=1; $page <= $total_pages ; $page++):
+            echo "<button onclick='window.location.href=\"?page={$page}\"', class='pagebtn'> $page </a>";
+        endfor;
+    }
+    
 }
 
 ?>

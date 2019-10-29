@@ -1,30 +1,43 @@
 <?php $tipo = $_GET['id']; ?>
 
-<?php include('../templates/header.php');   ?>
+<?php include('../templates/header.php'); ?>
 
-    <?php
-  #Llama a conexión, crea el objeto PDO y obtiene la variable $db
-  require("../config/conexion.php");
+<?php
+require("../config/conexion.php");
+include('../paginador/paginador.php');
+$query = "SELECT pnombre FROM Proyectos
+	WHERE tipo = '".$tipo."'";
+$limit = 18;
+$order_by = "pnombre";
+$datos = NULL;
+$total_pages = NULL;
+list($datos, $total_pages) = paginate($query, $limit, $order_by, $db1);
+?>
 
- 	$query = "SELECT pnombre FROM Proyectos
-	WHERE tipo = '".$tipo."';";
-	$result = $db1 -> prepare($query);
-	$result -> execute();
-	$datos = $result -> fetchAll();
-  ?>
 
-    <table>
-        <tr>
-            <th>Nombre Proyecto</th>
-        </tr>
-        <?php
+<table align="center", style="width:100%;">
+	<tr>
+		<th>Nombre Proyecto</th>
+	</tr>
+	<?php
 	foreach ($datos as $data) {
-  		echo "<tr align=center>
+		echo "<tr align=center>
               <td><a href=\"detalle_proy.php?id=$data[0]\">$data[0]</a></td>
             </tr>";
 	}
-  ?>
-    </table>
+		?>
+	</table>
+
+	<br>
+
+<div class="footer">
+<?php
+get_links($total_pages, $tipo);
+?>
+</div>
+
 </body>
+
+
 
 </html>

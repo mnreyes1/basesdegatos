@@ -26,7 +26,7 @@ if ($datos) {
     echo "<h3 class='container'>[ERROR] No se pudo iniciar sesion. Nombre o contraseña incorrectos</h3>";
 }
 ?>
-<?php include 'templates/header.php';?>
+<?php include '../templates/header.php';?>
 <br>
 
 <div class="container" style="background-color:#f1f1f1">

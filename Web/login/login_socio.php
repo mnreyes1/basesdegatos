@@ -1,4 +1,4 @@
-<?php include 'templates/header.php';?>
+<?php include '../templates/header.php';?>
 
     <div style="text-align: center;">
         <h2>Ingresar como socio</h2>

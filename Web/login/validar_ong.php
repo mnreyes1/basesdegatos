@@ -24,7 +24,7 @@ if ($datos) {
 }
 ?>
 
-<?php include 'templates/header.php';?>
+<?php include '../templates/header.php';?>
 <br>
 
 <div class="container" style="background-color:#f1f1f1">
