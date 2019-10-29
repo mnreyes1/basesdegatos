@@ -2,10 +2,6 @@
 
 <?php include('../templates/header.php');   ?>
 
-<div class="container-home" style="background-color:#f1f1f1">
-    <button onclick="history.go(-1);" class="cancelbtn">Volver</button>
-</div>
-
   <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");

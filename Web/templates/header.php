@@ -22,8 +22,9 @@ $url_index = "/{$url_grupo}/index.php";
 
 <body>
 
-<form method="get" action="<?php echo $url_index; ?>">
-    <button class='homebtn', type="submit"><i class='fa fa-home'></i></button>
-</form>
-
-        
+<button onclick="window.location.href='<?php echo $url_index; ?>'", class='homebtn'>Inicio</button>
+<?php
+if (!preg_match('/index.php/i', $_SERVER['REQUEST_URI'])) {
+    echo "<button onclick='history.go(-1);' class='backbtn'>Volver</button>";
+}
+?>
