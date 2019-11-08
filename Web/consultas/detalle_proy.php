@@ -7,7 +7,7 @@
   require("../config/conexion.php");
 
  	$query = "SELECT pnombre, tipo, latitud, longitud, comuna, fecha_apertura,
-  operativo FROM Proyectos
+  	operativo FROM Proyectos
 	WHERE pnombre = '".$nombre."';";
 	$result = $db1 -> prepare($query);
 	$result -> execute();
@@ -27,6 +27,19 @@
         </tr>
         <?php
 	foreach ($datos as $data) {
+		if ($data[1]=="minera") {
+		$query2 = "SELECT pnombre, mineral FROM mineras
+		WHERE pnombre = '".$data[0]."';";
+		$result2 = $db1 -> prepare($query2);
+		$result2 -> execute();
+		$datos2 = $result2 -> fetchAll();
+
+		$data[1] = 'minera ('.$datos2[0][1].')'
+      ?>
+      <?php
+    }
+
+
   		echo "<tr>
               <td align=center>$data[0]</td>
               <td align=center>$data[1]</td>
