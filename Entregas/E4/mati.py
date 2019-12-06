@@ -67,6 +67,14 @@ def delete_message(id):
         message = f'Mensaje con id={id} ha sido eliminado'
         return json.jsonify(message)
 
+
+@app.route("/messages/project-search")
+def project_search():
+    param = request.args.get('nombre', False)
+    resultado = list(messages.find({"$or": [{"metadata.sender": param},
+            {"metadata.receiver": param}]}, {"_id": 0}))
+    return json.jsonify(resultado)
+
 @app.route("/test")
 def test():
     # Obtener un parámero de la URL
