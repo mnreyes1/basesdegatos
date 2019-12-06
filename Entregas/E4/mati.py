@@ -1,48 +1,50 @@
 ﻿from flask import Flask, render_template, request, abort, json
 from pymongo import MongoClient
-import pandas as pd
-import matplotlib.pyplot as plt
-import os
-import atexit
-import subprocess
-
-USER_KEYS = ['name', 'last_name', 'occupation', 'follows', 'age']
 
 URL = "mongodb://grupo59:grupo59@gray.ing.puc.cl/grupo59"
 client = MongoClient(URL)
 db = client.get_database()
 messages = db.messages
 
-
 # Iniciamos la aplicación de flask
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return "<h1>HELLO</h1>"
 
-# Mapeamos esta función a la ruta '/plot' con el método get.
-@app.route("/plot")
-def plot():
-    # Export la figura para usarla en el html
-    pth = os.path.join('static', 'plot.png')
+@app.route("/messages/<int:uid>")
+def get_messsage(uid):
+    shown = list(messages.find({"id": uid}, {"_id": 0}))
+    return json.jsonify(shown)
 
-    # Retorna un html "rendereado"
-    return render_template('plot.html')
+@app.route("/messages/project-search")
+def project_search():
+    param = request.args.get('nombre', False)
+    resultado = list(messages.find({"$or": [{"metadata.sender": param},
+            {"metadata.receiver": param}]}, {"_id": 0}))
+    return json.jsonify(resultado)
 
-@app.route("/users")
-def get_users():
-    # Omitir el _id porque no es json serializable
-    resultados = ['Pedro', 'Juan', 'Diego']
-    return json.jsonify(resultados)
 
-@app.route("/users", methods=['POST'])
-def create_user():
-    '''
-    Crea un nuevo usuario en la base de datos
-    Se  necesitan todos los atributos de model, a excepcion de _id
-    '''
-    return json.jsonify({'success': True, 'message': 'Usuario con id 1 creado'})
+@app.route("/messages/content-search")
+def content_search():
+    if not request.json:
+        abort(400)
+    
+    desired = request.json["desired"]
+    required = request.json["required"]
+    forbidden = request.json["forbidden"]
+
+    if not (desired or required or forbidden):
+        found = list(messages.find({}, {"_id": 0}))
+    else:
+        desired = " ".join(desired)
+        required = "" .join("\"{}\"".format(r) for r in required)
+        forbidden = " ".join("-{}".format(f) for f in forbidden)
+
+        search_query = "{} {} {}".format(desired, required, forbidden)
+        
+        found = list(messages.find({"$text": {"$search": search_query}}, {"_id": 0}))
+    
+    return json.jsonify(found)
+
 
 @app.route("/messages", methods=['POST'])
 def create_message():
@@ -67,29 +69,6 @@ def delete_message(id):
         message = f'Mensaje con id={id} ha sido eliminado'
         return json.jsonify(message)
 
-
-@app.route("/messages/project-search")
-def project_search():
-    param = request.args.get('nombre', False)
-    resultado = list(messages.find({"$or": [{"metadata.sender": param},
-            {"metadata.receiver": param}]}, {"_id": 0}))
-    return json.jsonify(resultado)
-
-@app.route("/test")
-def test():
-    # Obtener un parámero de la URL
-    param = request.args.get('name', False)
-    print("URL param:", param)
-
-    # Obtener un header
-    param2 = request.headers.get('name', False)
-    print("Header:", param2)
-
-    # Obtener el body
-    body = request.data
-    print("Body:", body)
-
-    return "OK"
 
 if __name__ == "__main__":
     app.run()
